@@ -1,0 +1,27 @@
+- hosts: localhost
+  vars_files:
+  - password.yml 
+  tasks:
+        - ec2:
+            key_name: ekansh-key
+            instance_type: t2.micro
+            image: ami-010aff33ed5991201
+            count: 1
+            wait: yes
+            instance_tags:
+                   Name: workerNode
+                   os: workernode
+            vpc_subnet_id: subnet-73e0da1b
+            assign_public_ip: yes
+            aws_access_key: "{{ aws_access_key }}"
+            aws_secret_key: "{{ aws_secret_key }}"
+            region: ap-south-1
+          register: ec2
+        - debug:
+                var: ec2
+        - debug:
+                var: ec2.instances[0].public_ip
+         
+       
+                      
+

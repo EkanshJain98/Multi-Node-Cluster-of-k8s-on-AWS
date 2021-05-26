@@ -1,0 +1,9 @@
+- hosts: tag_os_masternode
+  tasks:
+  - include_role:
+      name: k8s-setup-of-master-role      
+- hosts: tag_os_workernode
+  tasks:
+  - include_role:
+      name: k8s-setup-of-worker-role
+
